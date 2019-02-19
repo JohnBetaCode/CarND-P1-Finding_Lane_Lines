@@ -1,47 +1,72 @@
-# **Finding Lane Lines on the Road** 
+[image_tuner_window]: ./writeup_files/tuner_window.png "Color space tuner window"
+[image_filtering]: ./writeup_files/image_filtered.png "Smoothed Image with bilateral filter"
+[image_binary_mask]: ./writeup_files/binary_mask.png "Binary image from color thresholding"
+[image_mask_canny]: ./writeup_files/mask_canny.png "Canny edge detection algorithm"
+[image_HoughLinesP]: ./writeup_files/HoughLinesP.png "Probabilistic Hough Line algorithm"
+[image_HoughLinesP_Heuricstic]: ./writeup_files/HoughLinesP_Heuricstic.png "Hough Lines filtered and assigned with heuristic"
+[image_result]: ./writeup_files/result.png "Result of lane lines finding process"
 
-## Writeup Template
+# **P1 - Finding Lane Lines on the Road** 
 
-### You can use this file as a template for your writeup if you want to submit it as a markdown file. But feel free to use some other method and submit a pdf if you prefer.
+### Description
 
----
-
-**Finding Lane Lines on the Road**
-
-The goals / steps of this project are the following:
-* Make a pipeline that finds lane lines on the road
-* Reflect on your work in a written report
-
-
-[//]: # (Image References)
-
-[image1]: ./examples/grayscale.jpg "Grayscale"
+When we drive, we use our eyes to decide where to go.  The lines on the road that show us where the lanes are act as our constant reference for where to steer the vehicle.  Naturally, one of the first things we would like to do in developing a self-driving car is to automatically detect lane lines using an algorithm. This project detect lane lines in images using Python and OpenCV.  I used the tools that I learned about in the lesson (Computer Vision Fundamentals) to identify lane lines on the road. You can run the pipeline on a series of individual images, and video stream (really just a series of images) in the same script. 
 
 ---
 
-### Reflection
+### Used Methods
 
-### 1. Describe your pipeline. As part of the description, explain how you modified the draw_lines() function.
+The tools that I used are color space (HSV and HLS), region of interest selection, gray scaling, Gaussian smoothing, Canny Edge Detection and Hough Transform line detection. To achieve the goal was piece together a pipeline to detect the line segments in the image/video, averaging/extrapolating them and draw them onto the image/video for display. 
 
-My pipeline consisted of 5 steps. First, I converted the images to grayscale, then I .... 
+---
 
-In order to draw a single line on the left and right lanes, I modified the draw_lines() function by ...
+### How to run
+To run the pipeline just run in a prompt the command:
 
-If you'd like to include images to show how the pipeline works, here is how to include an image: 
+>>clear && python2 CarND-P1-Finding_Lane_Lines.py
 
-![alt text][image1]
+You can change or specified some process variables as:	    
+	folder_results       = "./results"         # Results/output folder where result will be saved
+    	folder_dir_image = "./test_images" # folder with images to process 
+    	folder_dir_video  = "./test_videos"  # folder with videos to process 
+    	Tune_ranges = False # Enable/Disable parameters tuning (Shows a window to tune color space model values for thresholding)
+    	Save_results = True  # Enable/Disable results saving (Write images and videos in folder_results)
+
+Tested on: python 2.7 (3.X should work), OpenCV 3.0.0 (Higher version should work), UBUNTU 16.04.
+
+---
+
+### Code Description
+
+I decided to explore my own methods and write all functions from scratch, so no given function was used or modified for this project. The code “CarND-P1-Finding_Lane_Lines.py” is well documented, but here I’ll resume the process to achieve the goal in this project:
+
+#**Step 0**: I decided to use a color space (HSV) to get a binary image with our objects of interest (White lane lines and Yellow lane lines), but setting a maximum and a minimum value for each parameter H (Hue), S (Saturation), and V (Value) and then compile, see result, adjust and try again is bothersome, so I coded a simple tuner for this. Using the function “color_range_tunner”  you can load stetted parameters and set new values for a image. So, I tuned to color ranges for White lines and Yellow lines (white_conf_hsv.npz and yellow_conf_hsv.npz). If you decide don't tune up any parameter, this function loads parameters and return their values from npz files. It’s possible to tune parameters for a different color space instead of HSV like HLS o others supported by OpenCV (I just played with the HSV space).
+
+![alt text][image_tuner_window]
+![alt text][image_filtering]
+![alt text][image_binary_mask]
+![alt text][image_mask_canny]
+![alt text][image_HoughLinesP]
+![alt text][image_HoughLinesP_Heuricstic]
+![alt text][image_result]
+
+---
+
+### Pontential Shortcommings
+
+---
+
+### Possible Improvements
+
+---
+
+Date: 02/18/2019
+Programmer: John A. Betancourt G.
+Phone: +57 (311) 813 7206 / +57 (350) 283 51 22
+Mail: john.betancourt93@gmail.com / john@kiwicampus.com
+Web: www.linkedin.com/in/jhon-alberto-betancourt-gonzalez-345557129
 
 
-### 2. Identify potential shortcomings with your current pipeline
 
 
-One potential shortcoming would be what would happen when ... 
 
-Another shortcoming could be ...
-
-
-### 3. Suggest possible improvements to your pipeline
-
-A possible improvement would be to ...
-
-Another potential improvement could be to ...
