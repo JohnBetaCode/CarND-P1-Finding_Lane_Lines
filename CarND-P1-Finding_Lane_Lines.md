@@ -37,8 +37,10 @@ I decided to explore my own methods and write all functions from scratch, so no 
 <img src="/writeup_files/HoughLinesP_Heuricstic.png" alt="drawing" width="320"/>
 Figure 1 - Original image 
 
+
 <img src="/writeup_files/tuner_window.png" alt="drawing" width="320"/>
 Figure 2 - Color space tuner window 
+
 
 With these setted parameters now let’s see the main function which finds and returns right and left lane line:
 
@@ -58,21 +60,26 @@ find_lanelines(img_src, COLOR_TRESH_MIN, COLOR_TRESH_MAX, COLOR_MODEL, HOZ_TRESH
 <img src="/writeup_files/image_filtered.png" alt="drawing" width="320"/>
 Figure 3 - Smoothed Image with bilateral filter
 
+
 **Setp 2**: Get a binary mask from every color space tunned (COLOR_TRESH_MIN, COLOR_TRESH_MAX, COLOR_MODEL), and then apply a logical operator (OR) two combine all mask in just one and get a binary image/mask, .
 
 <img src="/writeup_files/binary_mask.png" alt="drawing" width="320"/>
 Figure 4 - Binary image from color thresholding
+
 
 **Setp 3**: Then Hough Line Transform is applied, no matter what parameter values are specified here since our image is a binary mask : 
 
 <img src="/writeup_files/mask_canny.png" alt="drawing" width="320"/>
 Figure 5 - Canny edge detection algorithm
 
+
 <img src="/writeup_files/HoughLinesP.png" alt="drawing" width="320"/>
 Figure 6 - Probabilistic Hough Line algorithm
 
+
 <img src="/writeup_files/HoughLinesP_Heuricstic.png" alt="drawing" width="320"/>
 Figure 7 - Hough Lines filtered and assigned with heuristic"
+
 
 **Returns**:
 	Lm: `float`  linear regression slope of left lane line
@@ -85,6 +92,11 @@ Figure 7 - Hough Lines filtered and assigned with heuristic"
 <img src="/writeup_files/result.png" alt="drawing" width="320"/>
 Figure 8 - Result of lane lines finding process"
 
+
+[CarND-P1-Finding_Lane_Lines-solidYellowLeft_Video](https://www.youtube.com/watch?v=vOMT9DGa2Bw) 
+[CarND-P1-Finding_Lane_Lines-solidWhiteRight_Video](https://www.youtube.com/watch?v=1VgXQWhJjMw) 
+[CarND-P1-Finding_Lane_Lines-challenge_video](https://www.youtube.com/watch?v=IY_yvBPCamc) 
+
 ---
 
 ### Pontential Shortcommings
@@ -95,11 +107,11 @@ Figure 8 - Result of lane lines finding process"
 
 ---
 
-Date: 02/18/2019
-Programmer: John A. Betancourt G.
-Phone: +57 (311) 813 7206 / +57 (350) 283 51 22
-Mail: john.betancourt93@gmail.com / john@kiwicampus.com
-Web: www.linkedin.com/in/jhon-alberto-betancourt-gonzalez-345557129
+> Date: 02/18/2019
+> Programmer: John A. Betancourt G.
+> Phone: +57 (311) 813 7206 / +57 (350) 283 51 22
+> Mail: john.betancourt93@gmail.com / john@kiwicampus.com
+> Web: www.linkedin.com/in/jhon-alberto-betancourt-gonzalez-345557129
 
 
 
