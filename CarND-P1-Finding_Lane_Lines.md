@@ -74,12 +74,10 @@ Figure 5 - Canny edge detection algorithm
 
 
 <img src="/writeup_files/HoughLinesP.png" alt="drawing" width="320"/>
-Figure 6 - Probabilistic Hough Line algorithm
-
+Figure 6 - Probabilistic Hough Line algorithm  
 
 <img src="/writeup_files/HoughLinesP_Heuricstic.png" alt="drawing" width="320"/>
-Figure 7 - Hough Lines filtered and assigned with heuristic"
-
+Figure 7 - Hough Lines filtered and assigned with heuristic  
 
 **Returns**:
 	Lm: `float`  linear regression slope of left lane line
@@ -93,9 +91,9 @@ Figure 7 - Hough Lines filtered and assigned with heuristic"
 Figure 8 - Result of lane lines finding process"
 
 
-[CarND-P1-Finding_Lane_Lines-solidYellowLeft_Video](https://www.youtube.com/watch?v=vOMT9DGa2Bw) 
-[CarND-P1-Finding_Lane_Lines-solidWhiteRight_Video](https://www.youtube.com/watch?v=1VgXQWhJjMw) 
-[CarND-P1-Finding_Lane_Lines-challenge_video](https://www.youtube.com/watch?v=IY_yvBPCamc) 
+[CarND-P1-Finding_Lane_Lines-solidYellowLeft_Video](https://www.youtube.com/watch?v=vOMT9DGa2Bw)  
+[CarND-P1-Finding_Lane_Lines-solidWhiteRight_Video](https://www.youtube.com/watch?v=1VgXQWhJjMw)  
+[CarND-P1-Finding_Lane_Lines-challenge_video](https://www.youtube.com/watch?v=IY_yvBPCamc)  
 
 ---
 
@@ -107,11 +105,11 @@ Figure 8 - Result of lane lines finding process"
 
 ---
 
-> Date: 02/18/2019
-> Programmer: John A. Betancourt G.
-> Phone: +57 (311) 813 7206 / +57 (350) 283 51 22
-> Mail: john.betancourt93@gmail.com / john@kiwicampus.com
-> Web: www.linkedin.com/in/jhon-alberto-betancourt-gonzalez-345557129
+> Date: 02/18/2019  
+> Programmer: John A. Betancourt G.  
+> Phone: +57 (311) 813 7206 / +57 (350) 283 51 22  
+> Mail: john.betancourt93@gmail.com / john@kiwicampus.com  
+> Web: www.linkedin.com/in/jhon-alberto-betancourt-gonzalez-345557129  
 
 
 
