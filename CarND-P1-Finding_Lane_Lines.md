@@ -77,10 +77,11 @@ TEXT - TEXT - TEXT  - TEXT - TEXT  - TEXT - TEXT  - TEXT - TEXT  - TEXT - TEXT
 TEXT - TEXT - TEXT  - TEXT - TEXT  - TEXT - TEXT  - TEXT - TEXT  - TEXT - TEXT  
 
 <img src="/writeup_files/HoughLinesP_Heuricstic.png" alt="drawing" width="320"/>  
-*Figure 7 - Hough Lines filtered and assigned with heuristic*  
+Figure 7 - Hough Lines filtered and assigned with heuristic  
+  
   
 TEXT - TEXT - TEXT  - TEXT - TEXT  - TEXT - TEXT  - TEXT - TEXT  - TEXT - TEXT  
-
+  
 **Returns**:
 	Lm: `float`  linear regression slope of left lane line
 	Lb: `float`  linear regression y-intercept of left lane line
