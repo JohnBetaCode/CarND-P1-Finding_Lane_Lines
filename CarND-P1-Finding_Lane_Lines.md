@@ -35,10 +35,10 @@ I decided to explore my own methods and write all functions from scratch, so no 
 **Step 0**: I decided to use a color space (HSV) to get a binary image with our objects of interest (White lane lines and Yellow lane lines), but setting a maximum and a minimum value for each parameter H (Hue), S (Saturation), and V (Value) and then compile, see result, adjust and try again is bothersome, so I coded a simple tuner for this. Using the function “color_range_tunner”  you can load stetted parameters and set new values for a image. So, I tuned to color ranges for White lines and Yellow lines (white_conf_hsv.npz and yellow_conf_hsv.npz). If you decide don't tune up any parameter, this function loads parameters and return their values from npz files. It’s possible to tune parameters for a different color space instead of HSV like HLS o others supported by OpenCV (I just played with the HSV space).
 
 <img src="/writeup_files/HoughLinesP_Heuricstic.png" alt="drawing" width="320"/>
-*Figure 1 - Original image*  
+*Figure 1 - Original image\
   
 <img src="/writeup_files/tuner_window.png" alt="drawing" width="320"/>
-*Figure 2 - Color space tuner window*  
+*Figure 2 - Color space tuner window*\
   
 With these setted parameters now let’s see the main function which finds and returns right and left lane line:
 
@@ -56,7 +56,7 @@ find_lanelines(img_src, COLOR_TRESH_MIN, COLOR_TRESH_MAX, COLOR_MODEL, HOZ_TRESH
 **Setp 1**: Smooth the image with a bilateral filter with a kernel size given by “FILT_KERN”. This kind of filter can reduce unwanted noise very well while keeping edges fairly sharp (but it is very slow compared to most filters).
 
 <img src="/writeup_files/image_filtered.png" alt="drawing" width="320"/>
-*Figure 3 - Smoothed Image with bilateral filter*  
+*Figure 3 - Smoothed Image with bilateral filter*\
   
 **Setp 2**: Get a binary mask from every color space tunned (COLOR_TRESH_MIN, COLOR_TRESH_MAX, COLOR_MODEL), and then apply a logical operator (OR) two combine all mask in just one and get a binary image/mask, .
 
@@ -66,10 +66,10 @@ find_lanelines(img_src, COLOR_TRESH_MIN, COLOR_TRESH_MAX, COLOR_MODEL, HOZ_TRESH
 **Setp 3**: Then Hough Line Transform is applied, no matter what parameter values are specified here since our image is a binary mask : 
 
 <img src="/writeup_files/mask_canny.png" alt="drawing" width="320"/>
-*Figure 5 - Canny edge detection algorithm*  
+*Figure 5 - Canny edge detection algorithm*\
   
 <img src="/writeup_files/HoughLinesP.png" alt="drawing" width="320"/>
-*Figure 6 - Probabilistic Hough Line algorithm*  
+*Figure 6 - Probabilistic Hough Line algorithm*\  
   
 <img src="/writeup_files/HoughLinesP_Heuricstic.png" alt="drawing" width="320"/>
 *Figure 7 - Hough Lines filtered and assigned with heuristic*  
@@ -83,7 +83,7 @@ find_lanelines(img_src, COLOR_TRESH_MIN, COLOR_TRESH_MAX, COLOR_MODEL, HOZ_TRESH
 	Right_Lines: `list` list of left lines with which right lane line was calculated
 
 <img src="/writeup_files/result.png" alt="drawing" width="320"/>
-*Figure 8 - Result of lane lines finding process*
+*Figure 8 - Result of lane lines finding process*\
   
 [CarND-P1-Finding_Lane_Lines-solidYellowLeft_Video](https://www.youtube.com/watch?v=vOMT9DGa2Bw)  
 [CarND-P1-Finding_Lane_Lines-solidWhiteRight_Video](https://www.youtube.com/watch?v=1VgXQWhJjMw)  
