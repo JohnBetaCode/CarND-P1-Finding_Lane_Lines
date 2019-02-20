@@ -45,6 +45,8 @@ I decided to explore my own methods and write all functions from scratch, so no 
 <img src=image_tuner_window  width="120" height="120">
 ![](image_tuner_window =120x)
 ![](./writeup_files/tuner_window.png =120x)
+<img src="./writeup_files/tuner_window.png" alt="drawing" width="200"/>
+<img src="/writeup_files/tuner_window.png" alt="drawing" width="200"/>
 Figure 1 - Color space tuner window 
 
 With these setted parameters now let’s see the main function which finds and returns right and left lane line:
