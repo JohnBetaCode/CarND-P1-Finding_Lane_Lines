@@ -319,7 +319,6 @@ def find_lanelines(img_src, COLOR_TRESH_MIN, COLOR_TRESH_MAX, COLOR_MODEL, VERT_
 
         # Conbine masks with OR operation
         mask_1 = cv2.bitwise_or(mask_1, img_tresh)
-        # cv2.imshow("test_mask", mask_1)
     # cv2.imshow("binary_mask", mask_1)
 
     # Get canny image
