@@ -87,7 +87,7 @@ Considere the next **input arguments**:
 
 *Figure 7 - Hough Lines filtered and assigned with heuristic*
   
-**Setp 6**: &nbsp;A
+**Setp 6**: &nbsp; The answer to last question is heuristic. If the vehicle is properly centered in the road the left and right lane lines always intersect the image in the bottom, and lines that we dont want intersect the image on the left and right side, these lines also have small angles close to 0. or 180. degrees. So with some conditionals we can take only the lines that belong to the left and right lane lines. Finally to get just one line per side, we compute a simple linear regression with left and right lines coordinates. 
   
 Finally the function **Returns**:
 * Lm: `float`  linear regression slope of left lane line
@@ -97,15 +97,24 @@ Finally the function **Returns**:
 * Left_Lines: `list` list of left lines with which left lane line was calculated
 * Right_Lines: `list` list of left lines with which right lane line was calculated
   
+If any left or right lane line is detected function returns the parameters Lm, Lb, Rm, and Rb as None type
+
 <img src="./writeup_files/result.png" alt="drawing" width="320"/>  
 
 *Figure 8 - Result of lane lines finding process*  
   
+**Setp 7**: &nbsp; having the detected left and right lane line we have achieved the goal, but in videos there's an issue, we'll have a pair of lines in every frame (image), and the question is, what happens if one of these gets lost, disappear or change position due to the noise or light conditions changing?, the answer is that our lines will be noisy changing fast their slope and intersection, so I coded a class called ```LaneLine```. 
+
+In videos when lines are detected are passed to the a LaneLine variable to be assigned and sociated, this variable take per every frame the line as input in its ```associate_regresion``` function and will average the current/input line with the previous ones. This leads to smoth changes of left and right lane lines through all video.
+
+dasdasdasdasdsad
+
+
 Result with test videos here:  
 
-[CarND-P1-Finding_Lane_Lines-solidYellowLeft_Video](https://www.youtube.com/watch?v=vOMT9DGa2Bw)  
-[CarND-P1-Finding_Lane_Lines-solidWhiteRight_Video](https://www.youtube.com/watch?v=1VgXQWhJjMw)  
-[CarND-P1-Finding_Lane_Lines-challenge_video](https://www.youtube.com/watch?v=IY_yvBPCamc)  
+1. [CarND-P1-Finding_Lane_Lines-solidYellowLeft_Video](https://www.youtube.com/watch?v=vOMT9DGa2Bw)  
+2. [CarND-P1-Finding_Lane_Lines-solidWhiteRight_Video](https://www.youtube.com/watch?v=1VgXQWhJjMw)  
+3. [CarND-P1-Finding_Lane_Lines-challenge_video](https://www.youtube.com/watch?v=IY_yvBPCamc)  
   
 ---
   
