@@ -353,6 +353,9 @@ def find_lanelines(img_src, COLOR_TRESH_MIN, COLOR_TRESH_MAX, COLOR_MODEL, VERT_
     bottom_line = ((0, img_src.shape[0]), (img_src.shape[1], img_src.shape[0]))
     Lllx = []; Llly = []; Rllx = []; Rlly = []
     
+    if lane_lines is None:
+        return None, None, None, None, None, None
+
     # Apply some heuristics to remove some detected lane lines
     for line in lane_lines:
         for x1, y1, x2, y2 in line:
@@ -422,6 +425,8 @@ def draw_lanelines(img_src, Right_Lane_Line, Left_Lane_Line, VERT_TRESH = 0.6, d
         img_src: `cv2.math` input image with lane lines drawn
     """
 
+
+
     # Create a copy of input image
     img_foreground = img_src.copy()
 
@@ -450,12 +455,14 @@ def draw_lanelines(img_src, Right_Lane_Line, Left_Lane_Line, VERT_TRESH = 0.6, d
 
     # If draw individual lines
     if draw_lines:
-        for line in Right_Lane_Line.lines:
-            for x1, y1, x2, y2 in line:
-                cv2.line(img_foreground, (x1, y1), (x2, y2),(255, 0, 0), 2)
-        for line in Left_Lane_Line.lines:
-            for x1, y1, x2, y2 in line:
-                cv2.line(img_foreground, (x1, y1), (x2, y2),(255, 0, 0), 2)
+        if Right_Lane_Line.lines is not None:
+            for line in Right_Lane_Line.lines:
+                for x1, y1, x2, y2 in line:
+                    cv2.line(img_foreground, (x1, y1), (x2, y2),(255, 0, 0), 2)
+        if Left_Lane_Line.lines is not None:
+            for line in Left_Lane_Line.lines:
+                for x1, y1, x2, y2 in line:
+                    cv2.line(img_foreground, (x1, y1), (x2, y2),(255, 0, 0), 2)
 
     # Overlay image with lines drawn over original image with transparency
     img_src = cv2.addWeighted(
@@ -467,19 +474,27 @@ def draw_lanelines(img_src, Right_Lane_Line, Left_Lane_Line, VERT_TRESH = 0.6, d
 
      # If print lane lines information in image
     if draw_info:
-        str_list = ["Left Line:", 
-                    "   Line: {}".format(len(Left_Lane_Line.lines)),
-                    "   lost: {} ({})".format(Left_Lane_Line.lost, Left_Lane_Line.lost_frames),
-                    "   m: {}".format(round(Left_Lane_Line.regression["m"], 2)),
-                    "   b: {}".format(round(Left_Lane_Line.regression["b"], 2)),
-                    " ",
-                    "Right Line:", 
-                    "   Line: {}".format(len(Right_Lane_Line.lines)),
-                    "   lost: {} ({})".format(Right_Lane_Line.lost, Right_Lane_Line.lost_frames),
-                    "   m: {}".format(round(Right_Lane_Line.regression["m"], 2)),
-                    "   b: {}".format(round(Right_Lane_Line.regression["b"], 2))]
-          
-        print_list_text(img_src = img_src, str_list = str_list, thickness = 1, origin = (10, 20))
+        if (Left_Lane_Line.lines is not None and  
+            Right_Lane_Line.lines is not None and
+            Left_Lane_Line.regression["m"] is not None and
+            Right_Lane_Line.regression["m"] is not None):
+            str_list = ["Left Line:", 
+                        "   Line: {}".format(len(Left_Lane_Line.lines)),
+                        "   lost: {} ({})".format(Left_Lane_Line.lost, Left_Lane_Line.lost_frames),
+                        "   m: {}".format(round(Left_Lane_Line.regression["m"], 2)),
+                        "   b: {}".format(round(Left_Lane_Line.regression["b"], 2)),
+                        " ",
+                        "Right Line:", 
+                        "   Line: {}".format(len(Right_Lane_Line.lines)),
+                        "   lost: {} ({})".format(Right_Lane_Line.lost, Right_Lane_Line.lost_frames),
+                        "   m: {}".format(round(Right_Lane_Line.regression["m"], 2)),
+                        "   b: {}".format(round(Right_Lane_Line.regression["b"], 2))]
+            
+            print_list_text(
+                img_src = img_src, 
+                str_list = str_list, 
+                thickness = 1, 
+                origin = (10, 20))
 
     # Return result
     return img_src
